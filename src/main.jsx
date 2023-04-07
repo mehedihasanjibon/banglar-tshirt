@@ -5,14 +5,26 @@ import './index.css';
 import {
   createBrowserRouter,
   RouterProvider,
-} from "react-router-dom"; 
-import Header from './components/Header/Header';
+} from "react-router-dom";  
 import Main from './components/Layout/Main';
+import Home from './components/Home/Home';
+import OrderReview from './components/OrderReview/OrderReview';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Main></Main>
+    element: <Main></Main>,
+    children: [
+      {
+        path: '/',
+        element: <Home></Home>,
+        loader: () => fetch('tshirt.json')
+      },
+      {
+        path: 'review',
+        element: <OrderReview></OrderReview>
+      }
+    ]
   }
 ])
 
